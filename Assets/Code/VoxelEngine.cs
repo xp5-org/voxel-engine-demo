@@ -21,6 +21,7 @@ public class VoxelEngine : MonoBehaviour
         _world.Chunks.Add(new ChunkId(0, 0, 0), chunk);
         // Set material
         chunkGameObject.GetComponent<MeshRenderer>().material = Material;
+        
 
     }
 
@@ -28,11 +29,34 @@ public class VoxelEngine : MonoBehaviour
     void Update()
     {
         // Update a random block to random type
-        var x = _random.Next(0, 16);
-        var y = _random.Next(0, 16);
-        var z = _random.Next(0, 16);
-        var voxelType = (UInt16)_random.Next(0, 2);
+        // var x = _random.Next(0, 16);
+        // var y = _random.Next(0, 3);
+        // var z = _random.Next(0, 16);
 
-        _world[x, y, z] = voxelType;
+
+        // _world[x, y, z] = voxelType;
+        bool finished = false;
+
+
+        if (finished == false)
+        {
+            var voxelType = (UInt16)_random.Next(2, 2);
+            int[,,] arrayOfMessages = new int[16, 16, 16];
+            for (int x = 0; x < arrayOfMessages.GetLength(0); x++)
+            {
+                for (int y = 0; y < arrayOfMessages.GetLength(1); y++)
+                {
+                    for (int z = 0; z < arrayOfMessages.GetLength(2); z++)
+                    {
+                        _world[x, y, z] = voxelType;
+
+                    }
+                }
+                finished = true;
+            }
+        }
+
+
+
     }
 }
